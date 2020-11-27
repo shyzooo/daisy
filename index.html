@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Daisy</title>
+	<link href="https://fonts.googleapis.com/css?family=Encode+Sans:300,400,500,700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" media="all" href="css/animate.min.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="js/wow.min.js"></script>
+	<script>new WOW().init();</script>
+</head>
+<body>
+
+	<!-- SVG=============== -->
+	<svg display="none">
+		<symbol id="slider" viewBox="0 0 28 28">
+			<g>
+				<image xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAq1BMVEUAAAD8Y178Y178Y178Y178Y178Y178Y178Y178Y178Y178Y178Y178Y178Y178Y178Y178Y178Y178Y178Y178Y178Y178Y178Y178Y178Y178Y178Y178Y178Y178Y178ZF/8ZWD8ZmH8Y178aGT8Z2L8aWT//v3+ysf9lZH9lJH+ycf9iYX/9PP9ko/9kY39jIj9kIz9jor/9fT9jYn9j4z9ko7//fwAAAC/dsYYAAAAIHRSTlMAAT6JxOj5igJi2yHKQOtGRyfy8wNjP8PCy8woSdyLxZ5AedMAAAABYktHRACIBR1IAAAACXBIWXMAAAsSAAALEgHS3X78AAAA/ElEQVQoz33T23aCMBAF0CFIFKReGrQVUINTS21Na7Hq//9ZEzUJqOE8Dey1uAwHgGs84ncCSoNOl3jQTC+MeHHOquBR2KtbP+acI0cZrqa4b+1pgG8rNFm/FwOibUjxJmtORxcbP+ODsLGyJK6dKu0YJxJDfIw4ke8XuTDyYIouxCn4bvThxY2vELgxAOpG2o6tl219oK4ePzZX/Pwyr2KWsBXfZ/wRW7MEu76d+JVY7f/0+mQfJuYe1b4qd+JQWzwkM6MHUYqjPkjVJ4OMGT2eNnpk2aUK+V1N5AJyXaKc3RrLbf2ytGlp1iz13NK8WWrFZLFUv8NyQQz9A+CzUyJppSpzAAAAAElFTkSuQmCC" width="28" height="28"/>
+			</g>
+		</symbol>
+
+		<symbol id="adv-1" viewBox="0 0 100.188 116">
+			<g>
+				<path d="M-0.007,29.002 L50.097,0.004 L100.200,29.002 L100.200,86.997 L50.097,115.995 L-0.007,86.997 L-0.007,29.002 Z"/>
+   				 <path d="M5.004,32.002 L50.097,6.003 L95.190,32.002 L95.190,83.997 L50.097,109.996 L5.004,83.997 L5.004,32.002 Z"/>
+			</g>
+		</symbol>
+
+		<symbol id="advform-1" viewBox="0 0 33.093 39.03">
+			<g>
+				<path d="M33.051,0.898 C33.146,0.972 33.053,1.250 32.835,1.519 C32.808,1.556 32.778,1.591 32.750,1.624 C32.698,1.679 32.770,2.448 32.813,3.355 C32.866,4.489 32.826,5.919 32.556,7.570 C32.532,7.728 32.505,7.882 32.479,8.031 C32.456,8.150 32.439,8.259 32.414,8.377 C32.306,8.934 32.188,9.427 32.078,9.841 C31.863,10.643 31.389,11.973 31.041,12.814 C30.015,15.281 28.447,17.977 26.068,20.772 C25.475,21.469 25.177,22.718 25.339,23.613 C25.888,26.660 26.280,33.303 20.349,36.818 C19.557,37.288 18.977,36.842 18.992,35.933 C19.051,31.927 17.564,21.976 1.245,22.277 C0.320,22.293 -0.237,21.627 0.124,20.790 C1.269,18.134 4.444,13.018 11.859,13.266 C12.781,13.297 13.866,12.749 14.356,11.979 C15.639,9.960 18.428,6.217 22.836,3.544 C25.557,1.846 28.056,1.126 29.615,0.820 C30.522,0.644 31.295,0.561 31.327,0.514 C31.345,0.487 31.365,0.459 31.386,0.431 C31.600,0.162 31.852,0.001 31.950,0.072 L32.020,0.124 C32.059,0.152 32.331,0.100 32.625,0.009 C32.920,-0.083 33.108,0.060 33.046,0.328 C32.986,0.595 32.961,0.831 32.993,0.855 C33.025,0.879 33.051,0.898 33.051,0.898 ZM23.379,11.431 C22.001,10.654 20.301,10.939 19.296,12.030 C19.155,12.184 19.028,12.351 18.918,12.539 C18.023,14.048 18.573,15.993 20.148,16.884 C21.522,17.663 23.222,17.376 24.230,16.284 C24.367,16.132 24.498,15.964 24.609,15.776 C25.504,14.265 24.950,12.318 23.379,11.431 ZM7.507,25.333 C8.287,24.846 8.769,25.263 8.417,26.103 C7.621,28.005 5.928,31.195 3.001,32.923 C2.209,33.390 1.689,32.918 2.040,32.078 C2.799,30.259 4.440,27.251 7.507,25.333 ZM10.938,27.964 C11.731,27.498 12.217,27.909 11.895,28.761 C10.923,31.335 8.519,36.427 4.050,38.850 C3.242,39.287 2.720,38.819 3.036,37.967 C3.953,35.506 6.245,30.733 10.938,27.964 ZM14.383,30.624 C15.163,30.137 15.644,30.554 15.293,31.394 C14.497,33.297 12.803,36.488 9.876,38.218 C9.084,38.686 8.565,38.214 8.916,37.372 C9.674,35.554 11.314,32.544 14.383,30.624 Z"/>
+			</g>
+		</symbol>
+
+		<symbol id="advform-2" viewBox="0 0 41 38">
+			<g>
+				<path d="M26.6 37.965c-.528.071-5.507.006-5.875 0-.368.006-5.348.071-5.876 0-.549-.075 0-.513.694-1.024.695-.511.767-1.28.767-1.28l.262-1.665h8.305l.26 1.666s.074.768.77 1.28c.693.512 1.241.95.694 1.023zM11.37 23.63c2.218-.017 2.494-.552 3.217-2.78 1.334-3.517 7.341.92 3.618 2.46-3.722 1.542-9.055.337-6.836.32zM34.033 4.552L20.652 19.117c-1.124 1.395-.864 1.333-1.94.465-1.077-.867-1.083-.6.04-1.995L30.137 1.409C31.26.014 33.043-.413 34.12.455c1.077.867 1.038 2.701-.086 4.097zM32.938.644s-1.635-.249-2.466 1.11c.555.443.721.637.721.637s.195-.831 1.745-1.747zm7.834 6.881v23.262c0 .886-.718 1.605-1.604 1.605H2.28a1.604 1.604 0 0 1-1.603-1.605V7.525c0-.885.718-1.604 1.603-1.604h23.022l-1.695 2.406H3.084V27.58h35.282V8.327h-6.415l2.211-2.406h5.006c.886 0 1.604.719 1.604 1.604z"/>
+			</g>
+		</symbol>
+
+		<symbol id="advform-3" viewBox="0 0 37 37">
+			<g>
+				<path d="M37 3.894v29.211A3.906 3.906 0 0 1 33.11 37H3.895A3.908 3.908 0 0 1 0 33.105V3.894A3.905 3.905 0 0 1 3.895-.001H33.11C35.248 0 37 1.75 37 3.894zM4.225 24.745h28.55V5.27H4.224zm30.101 5.475H14.395a3.331 3.331 0 0 0-3.239-2.567 3.332 3.332 0 0 0-3.238 2.567H2.676v1.542h5.246a3.326 3.326 0 0 0 3.234 2.56 3.327 3.327 0 0 0 3.235-2.56h19.935zM21.906 8.093h3.982v13.361h-3.981zM10.922 13.23h3.983v8.223H10.92zm5.493-2.183h3.984v10.406h-3.984z"/>
+			</g>
+		</symbol>
+
+		<symbol id="advform-4" viewBox="0 0 37 38">
+			<g>
+				<path d="M12.17 11.163l-.06 12.663c.002 1.06-1.34 2.923-1.34 2.923-.992 2.957 1.5 4.01-.243 5.817C12.844 37.326 8.187 38 8.187 38 6.59 38 6.84 36.409 6.84 36.409l-.016-9.916c.136-2.514-1.433-2.572-1.433-2.572-3.789.005-3.95-4.053-3.956-4.542a3.293 3.293 0 0 1-1.439-2.72c0-1.127.568-2.12 1.431-2.712v-.11c-.007-3.985 4.109-4.172 4.109-4.172l5.206-.01c1.683-.003 1.432 1.504 1.428 1.508zm24.833 5.017c.004 1.725-.973 3.214-2.388 3.976l.023 11.55c.078 1.428-1.025.059-1.025.059s-4.779-8.837-18.754-8.81c0 0-1.32.001-1.32-1.259l-.022-10.93s-.236-1.26 1.239-1.263c0 0 12.504.736 18.549-8.692 0 0 1.273-1.684 1.277-.17l.019 11.573c1.418.76 2.402 2.237 2.402 3.966zM33.04 3.33c-3.976 6.18-12.197 7.334-12.197 7.334 10.652-.108 12.197-7.334 12.197-7.334zm1.93 9.851c1.583 2.32 1.16 4.29 1.16 4.29.965-3.053-1.16-4.29-1.16-4.29z"/>
+			</g>
+		</symbol>
+
+		<symbol id="slider-2" viewBox="0 0 28 28">
+			<g>
+				<image xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAz1BMVEUAAAD8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2H8Z2EAAADsTLSMAAAAQ3RSTlMAAT6JxOj5igJi29J+QRkGIcrCPcFA42dG6TlHJzcDaGZjPD/R0H/DqVJRqO9OS0RK8EVDScBNy1NkzCjq5+vcBYvFS5zZxAAAAAFiS0dEAIgFHUgAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAEiSURBVCjPfZPreoIwDIbTYhGQgyDqEHFDdl53cAO3wTxy//c0ukELKuZHSXj7pGnyFaA0hKUOkWXS6WIETVNUracbpmWZht7TVKXO+rYzENHAtfsiGo7GjVRoPMKVf+FNDk6BCfH/nakX8J955QTelH1m9iUcQ7iyZ8WqOugURG5YLFqtzhqEuYYguobTEG4ikG7boC7BndEGhw4Qsw2aBGSrDVryeXg2LS/o/qGEj0+8oK5ewog+/8EXGvGriCa80rcC+ot30QSkzSvqL/z8g8a8fYUewoQ3PqY5XVaNT0I2sk8xsmX+VbnfKRsZZD9i2NwCLyuzrY5lsor5WetDga1jEWWpW5dmkmb1vYq6YaLebpmoN01RM4x3e/Yc9jvM0S9LLRmuh6e/XAAAAABJRU5ErkJggg==" width="28" height="28"/>
+			</g>
+		</symbol>
+
+		<symbol id="idea" viewBox="0 0 19 25">
+			<g>
+				<path d="M15.833,9.375 C15.833,12.500 12.667,15.576 12.667,18.750 L6.333,18.750 C6.333,15.674 3.167,12.500 3.167,9.375 C3.167,5.923 6.002,3.125 9.500,3.125 C12.997,3.125 15.833,5.923 15.833,9.375 ZM11.875,21.875 L7.125,21.875 C6.687,21.875 6.333,22.224 6.333,22.656 C6.333,23.088 6.687,23.437 7.125,23.437 L7.270,23.437 C7.597,24.347 8.467,25.000 9.500,25.000 C10.533,25.000 11.403,24.347 11.730,23.437 L11.875,23.437 C12.313,23.437 12.667,23.088 12.667,22.656 C12.667,22.224 12.313,21.875 11.875,21.875 ZM11.875,19.531 L7.125,19.531 C6.687,19.531 6.333,19.881 6.333,20.312 C6.333,20.744 6.687,21.094 7.125,21.094 L11.875,21.094 C12.313,21.094 12.667,20.744 12.667,20.312 C12.667,19.881 12.313,19.531 11.875,19.531 ZM0.877,5.365 L2.298,6.173 C2.517,5.694 2.785,5.246 3.094,4.823 L1.668,4.010 L0.877,5.365 ZM10.292,1.641 L10.292,-0.000 L8.708,-0.000 L8.708,1.641 C8.973,1.614 9.228,1.562 9.500,1.562 C9.772,1.562 10.027,1.614 10.292,1.641 ZM6.256,2.267 L5.436,0.865 L4.063,1.646 L4.888,3.053 C5.316,2.748 5.770,2.484 6.256,2.267 ZM18.123,5.365 L17.332,4.010 L15.906,4.823 C16.215,5.246 16.484,5.694 16.704,6.173 L18.123,5.365 ZM14.935,1.646 L13.565,0.865 L12.745,2.267 C13.229,2.484 13.686,2.748 14.112,3.052 L14.935,1.646 ZM1.583,9.375 C1.583,9.106 1.636,8.854 1.664,8.594 L-0.000,8.594 L-0.000,10.156 L1.667,10.156 C1.636,9.897 1.583,9.640 1.583,9.375 ZM17.336,8.594 C17.364,8.854 17.417,9.106 17.417,9.375 C17.417,9.640 17.364,9.897 17.333,10.156 L19.000,10.156 L19.000,8.594 L17.336,8.594 ZM16.036,14.000 L17.332,14.738 L18.123,13.385 L16.685,12.567 C16.486,13.052 16.269,13.528 16.036,14.000 ZM0.877,13.385 L1.668,14.738 L2.953,14.007 C2.721,13.534 2.505,13.055 2.309,12.570 L0.877,13.385 Z"/>
+			</g>
+		</symbol>
+
+		<symbol id="ellipsered" viewBox="0 0 38 38">
+			<g>
+				<circle cx="19" cy="19" r="19"/>
+			</g>
+		</symbol>
+
+		<symbol id="ellipsewhite" viewBox="0 0 41 41">
+			<g>
+				<circle cx="20.5" cy="20.5" r="19"/>
+			</g>
+		</symbol>
+
+		<symbol id="comp" viewBox="0 0 23 21">
+			<g>
+				<path d="M21.610,17.596 L1.394,17.596 C0.622,17.596 -0.008,16.955 -0.008,16.175 L-0.008,1.425 C-0.008,0.645 0.622,0.003 1.394,0.003 L21.610,0.003 C22.381,0.003 23.011,0.645 23.011,1.425 L23.011,16.175 C23.011,16.955 22.381,17.596 21.610,17.596 ZM21.257,1.997 L1.745,1.997 L1.745,15.129 L21.257,15.129 L21.257,1.997 ZM4.725,10.594 C4.921,10.594 5.093,10.669 5.243,10.774 L9.546,7.377 C9.509,7.274 9.482,7.166 9.482,7.050 C9.482,6.525 9.901,6.099 10.419,6.099 C10.937,6.099 11.357,6.525 11.357,7.050 C11.357,7.166 11.329,7.273 11.292,7.376 C12.012,7.997 13.004,8.853 13.626,9.389 C13.786,9.260 13.980,9.171 14.200,9.171 C14.387,9.171 14.551,9.240 14.697,9.335 C15.350,8.737 16.390,7.784 17.072,7.159 C17.029,7.050 17.002,6.931 17.002,6.806 C17.002,6.280 17.421,5.854 17.939,5.854 C18.457,5.854 18.877,6.280 18.877,6.806 C18.877,7.331 18.457,7.757 17.939,7.757 C17.782,7.757 17.641,7.708 17.511,7.639 L15.087,9.859 C15.111,9.944 15.139,10.029 15.139,10.122 C15.139,10.649 14.718,11.075 14.200,11.075 C13.682,11.075 13.262,10.649 13.262,10.122 C13.262,10.065 13.284,10.015 13.294,9.961 C12.536,9.307 11.491,8.405 10.870,7.869 C10.734,7.946 10.586,8.002 10.419,8.002 C10.218,8.002 10.042,7.924 9.889,7.814 C8.924,8.569 6.807,10.297 5.609,11.277 C5.635,11.364 5.662,11.450 5.662,11.545 C5.662,12.070 5.242,12.496 4.725,12.496 C4.207,12.496 3.787,12.070 3.787,11.545 C3.787,11.020 4.207,10.594 4.725,10.594 ZM14.133,18.272 L16.779,20.999 L6.262,20.999 L8.907,18.272 L14.133,18.272 Z"/>
+			</g>
+		</symbol>
+
+		<symbol id="man" viewBox="0 0 22 25">
+			<g>
+				<path d="M21.884,15.240 C21.185,16.009 19.995,16.038 19.995,16.038 C19.995,16.038 20.768,17.501 20.421,17.906 C20.073,18.312 19.109,18.138 19.109,18.138 C19.109,18.138 20.005,18.784 20.005,19.284 C20.005,19.784 18.490,20.451 18.490,20.451 C18.490,20.451 18.768,23.223 16.491,23.031 C14.216,22.838 13.834,22.198 13.834,22.198 L13.160,24.999 L4.352,24.999 L4.661,18.908 C4.661,18.908 -0.748,13.050 0.103,7.810 C0.530,5.718 0.258,1.335 7.520,0.180 C14.782,-0.978 21.325,2.699 19.680,10.734 C19.680,12.199 22.585,14.473 21.884,15.240 ZM13.275,7.859 C13.275,7.859 12.598,7.468 12.260,7.273 C12.250,7.079 12.229,6.887 12.189,6.700 C12.457,6.471 12.994,6.013 12.994,6.013 L12.994,5.090 L11.672,3.552 L10.745,3.552 C10.745,3.552 10.306,3.927 10.088,4.115 C9.848,3.999 9.598,3.905 9.334,3.834 C9.312,3.574 9.271,3.053 9.271,3.053 L8.616,2.399 L6.593,2.562 L5.938,3.215 C5.938,3.215 5.993,3.901 6.022,4.244 C5.824,4.356 5.636,4.483 5.462,4.624 C5.178,4.494 4.609,4.234 4.609,4.234 L3.713,4.469 L2.866,6.310 L2.835,6.436 L3.100,7.205 C3.100,7.205 3.761,7.506 4.091,7.657 C4.106,7.874 4.139,8.086 4.194,8.292 C3.942,8.506 3.437,8.931 3.437,8.931 L3.437,9.855 L4.749,11.400 C4.749,11.400 5.512,11.490 5.553,11.468 C5.594,11.445 5.676,11.400 5.676,11.400 C5.676,11.400 6.155,10.995 6.395,10.793 C6.597,10.883 6.808,10.960 7.028,11.018 C7.052,11.289 7.101,11.832 7.101,11.832 L7.757,12.485 L9.777,12.301 L10.432,11.647 C10.432,11.647 10.368,10.948 10.337,10.597 C10.502,10.503 10.661,10.401 10.809,10.286 C11.073,10.436 11.599,10.740 11.599,10.740 L12.495,10.505 L13.510,8.752 L13.275,7.859 ZM15.845,15.293 C15.845,15.293 15.410,15.043 15.193,14.918 C15.188,14.793 15.174,14.670 15.149,14.550 C15.320,14.403 15.664,14.109 15.664,14.109 L15.664,13.516 L14.816,12.529 L14.221,12.529 C14.221,12.529 13.940,12.770 13.800,12.890 C13.646,12.817 13.486,12.756 13.316,12.710 C13.302,12.543 13.276,12.209 13.276,12.209 L12.856,11.790 L11.558,11.895 L11.139,12.313 C11.139,12.313 11.174,12.753 11.192,12.974 C11.065,13.045 10.944,13.126 10.833,13.217 C10.650,13.133 10.286,12.968 10.286,12.968 L9.710,13.118 L9.167,14.298 L9.148,14.380 L9.318,14.873 C9.318,14.873 9.742,15.066 9.954,15.162 C9.964,15.302 9.985,15.437 10.020,15.570 C9.858,15.707 9.535,15.980 9.535,15.980 L9.535,16.572 L10.376,17.565 C10.376,17.565 10.866,17.623 10.892,17.608 C10.917,17.594 10.970,17.565 10.970,17.565 C10.970,17.565 11.277,17.305 11.432,17.175 C11.561,17.232 11.695,17.283 11.836,17.320 C11.852,17.495 11.884,17.842 11.884,17.842 L12.304,18.262 L13.599,18.143 L14.018,17.725 C14.018,17.725 13.978,17.276 13.957,17.051 C14.064,16.990 14.166,16.926 14.261,16.851 C14.431,16.948 14.768,17.142 14.768,17.142 L15.342,16.992 L15.995,15.867 L15.845,15.293 ZM12.501,16.333 C11.778,16.333 11.192,15.748 11.192,15.027 C11.192,14.305 11.778,13.721 12.501,13.721 C13.224,13.721 13.810,14.305 13.810,15.027 C13.810,15.748 13.224,16.333 12.501,16.333 ZM8.063,9.479 C6.936,9.479 6.021,8.567 6.021,7.443 C6.021,6.317 6.936,5.406 8.063,5.406 C9.191,5.406 10.105,6.317 10.105,7.443 C10.105,8.567 9.191,9.479 8.063,9.479 Z"/>
+			</g>
+		</symbol>
+
+		<symbol id="hand" viewBox="0 0 22.969 21">
+			<g>
+				<path d="M22.939,8.941 L21.213,18.158 C21.170,18.386 21.140,18.760 21.093,18.987 C20.855,20.130 19.670,21.000 18.509,21.000 L10.334,21.000 C9.860,21.000 9.420,20.851 9.052,20.600 C8.865,20.472 8.577,20.245 8.386,20.124 C7.684,19.679 6.881,19.165 5.648,19.071 C5.424,19.054 5.084,18.964 4.888,18.850 L3.716,18.169 C3.520,18.055 3.362,17.775 3.362,17.543 L3.362,9.272 C3.362,9.041 3.533,8.789 3.744,8.710 L6.466,7.699 C6.677,7.620 7.010,7.471 7.207,7.360 C8.175,6.813 10.857,5.177 12.254,3.143 C13.327,1.579 14.386,-0.000 15.116,-0.000 C15.559,0.000 15.881,0.579 16.014,2.090 C16.174,3.906 15.874,4.972 15.346,5.765 C15.220,5.957 15.282,6.099 15.506,6.099 L20.666,6.099 C21.826,6.099 22.790,6.968 22.981,8.111 C23.020,8.339 22.982,8.713 22.939,8.941 ZM2.166,18.967 L0.677,18.967 C0.303,18.967 -0.000,18.654 -0.000,18.267 L-0.000,8.611 C-0.000,8.224 0.303,7.911 0.677,7.911 L2.166,7.911 C2.540,7.911 2.843,8.224 2.843,8.611 L2.843,18.267 C2.843,18.654 2.540,18.967 2.166,18.967 Z"/>
+			</g>
+		</symbol>
+
+		<symbol id="rocket" viewBox="0 0 16 19">
+			<g>
+				<path d="M16.013,0.446 C16.059,0.482 16.014,0.617 15.908,0.748 C15.895,0.766 15.881,0.783 15.867,0.799 C15.842,0.826 15.877,1.200 15.898,1.642 C15.923,2.193 15.904,2.890 15.773,3.693 C15.761,3.770 15.748,3.845 15.736,3.918 C15.725,3.976 15.716,4.029 15.704,4.086 C15.652,4.357 15.595,4.597 15.541,4.799 C15.437,5.189 15.207,5.836 15.038,6.246 C14.542,7.447 13.781,8.759 12.628,10.119 C12.341,10.459 12.197,11.067 12.275,11.502 C12.541,12.985 12.731,16.219 9.857,17.930 C9.473,18.158 9.192,17.941 9.199,17.499 C9.228,15.549 8.507,10.705 0.598,10.852 C0.150,10.859 -0.120,10.535 0.055,10.128 C0.610,8.835 2.148,6.345 5.742,6.466 C6.189,6.481 6.715,6.214 6.952,5.839 C7.574,4.856 8.926,3.035 11.062,1.734 C12.381,0.907 13.592,0.557 14.348,0.408 C14.787,0.322 15.162,0.282 15.177,0.259 C15.186,0.246 15.196,0.232 15.206,0.219 C15.310,0.088 15.432,0.009 15.479,0.044 L15.513,0.069 C15.532,0.082 15.664,0.057 15.806,0.013 C15.949,-0.032 16.041,0.038 16.010,0.168 C15.981,0.299 15.969,0.413 15.985,0.425 C16.000,0.436 16.013,0.446 16.013,0.446 ZM11.325,5.572 C10.658,5.194 9.834,5.333 9.347,5.864 C9.278,5.939 9.216,6.020 9.163,6.112 C8.729,6.846 8.996,7.793 9.760,8.227 C10.425,8.606 11.249,8.466 11.738,7.935 C11.804,7.861 11.867,7.779 11.921,7.687 C12.355,6.952 12.087,6.004 11.325,5.572 ZM3.633,12.339 C4.011,12.102 4.244,12.305 4.074,12.714 C3.688,13.640 2.868,15.192 1.449,16.034 C1.065,16.261 0.813,16.031 0.984,15.622 C1.351,14.737 2.146,13.273 3.633,12.339 ZM5.296,13.620 C5.680,13.393 5.916,13.593 5.759,14.007 C5.288,15.261 4.124,17.739 1.958,18.918 C1.566,19.131 1.313,18.903 1.466,18.489 C1.910,17.291 3.021,14.967 5.296,13.620 ZM6.966,14.915 C7.344,14.677 7.577,14.880 7.407,15.289 C7.021,16.216 6.200,17.769 4.781,18.611 C4.397,18.839 4.146,18.609 4.316,18.199 C4.683,17.314 5.478,15.849 6.966,14.915 Z"/>
+			</g>
+		</symbol>
+
+		<symbol id="facebook" viewBox="0 0 37 37">
+			<g>
+				<path d="M36.992 18.506c0 10.22-8.281 18.507-18.496 18.507C8.282 37.013 0 28.726 0 18.506S8.282 0 18.496 0c10.215 0 18.496 8.284 18.496 18.506zm-13.31-3.828h-3.44l.004-1.916c0-.997.07-1.531 1.501-1.531h1.915V7.403H20.6c-3.674 0-4.52 1.898-4.52 5.022l.005 2.253-2.775.002v3.826h2.775V29.61h4.159l.002-11.104 3.032-.002z"/>
+			</g>
+		</symbol>
+
+		<symbol id="twitter" viewBox="0 0 37 37">
+			<g>
+				<path d="M37 18.5C37 28.717 28.718 37 18.5 37 8.284 37 .002 28.717.002 18.5.001 8.282 8.283 0 18.501 0 28.718 0 37 8.282 37 18.5zm-9.158-5.23a7.299 7.299 0 0 1-2.093.573 3.656 3.656 0 0 0 1.602-2.016 7.306 7.306 0 0 1-2.314.885 3.644 3.644 0 0 0-6.209 3.323 10.345 10.345 0 0 1-7.509-3.807 3.644 3.644 0 0 0 1.128 4.865 3.638 3.638 0 0 1-1.65-.456l-.001.045a3.647 3.647 0 0 0 2.923 3.573 3.627 3.627 0 0 1-1.645.063 3.646 3.646 0 0 0 3.404 2.53 7.305 7.305 0 0 1-5.395 1.508 10.307 10.307 0 0 0 5.585 1.638c6.701 0 10.366-5.552 10.366-10.368 0-.157-.002-.315-.01-.471a7.397 7.397 0 0 0 1.818-1.885z"/>
+			</g>
+		</symbol>
+
+		<symbol id="in" viewBox="0 0 37 37">
+			<g>
+				<path d="M36.992 18.506c0 10.22-8.281 18.507-18.496 18.507C8.282 37.013 0 28.726 0 18.506S8.282 0 18.496 0c10.215 0 18.496 8.284 18.496 18.506zm-23.12-7.229H9.248V27.47h4.624zm0-3.163c0-1.195-.97-2.167-2.169-2.17a2.17 2.17 0 0 0 0 4.34 2.169 2.169 0 0 0 2.169-2.17zM30.056 17.6c0-5.422-3.125-6.32-4.624-6.32a7.739 7.739 0 0 0-4.624 1.545v-1.547h-4.624V27.47h4.624V17.458s.46-1.994 2.85-1.994c1.44 0 1.774.821 1.774 1.994V27.47h4.624z"/>
+			</g>
+		</symbol>
+
+		<symbol id="quots" viewBox="0 0 34 29">
+			<g>
+				<path d="M7.285 15.711h8.506v13.284H-.006V15.71C-.006 5.688 2.427.005 10.93.005v8.093c-3.644 0-3.644.726-3.644 5.075zm26.72 0v13.284H18.218V15.71C18.218 5.688 20.648.005 29.15.005v8.094c-3.643 0-3.643.726-3.643 5.075v2.537z"/>
+			</g>
+		</symbol>
+
+		<symbol id="arrow-left" viewBox="0 0 31 31">
+			<g>
+				<path d="M-.01 15.5C-.01 6.954 6.946 0 15.495 0c8.547 0 15.5 6.954 15.5 15.5S24.042 31 15.495 31C6.945 31-.01 24.045-.01 15.5zm1.422 0c0 7.763 6.318 14.077 14.083 14.077 7.763 0 14.078-6.314 14.078-14.077 0-7.762-6.315-14.078-14.078-14.078C7.73 1.422 1.412 7.738 1.412 15.5zm2.955.102l17.397-10.04-6.068 9.883 6.068 10.2z"/>
+			</g>
+		</symbol>
+
+		<symbol id="arrow-right" viewBox="0 0 31 31">
+			<g>
+				<path d="M15.504 31c-8.546 0-15.5-6.954-15.5-15.5S6.958 0 15.504 0c8.55 0 15.506 6.954 15.506 15.5S24.054 31 15.504 31zm0-29.578C7.742 1.422 1.427 7.738 1.427 15.5c0 7.763 6.315 14.077 14.077 14.077 7.766 0 14.083-6.314 14.083-14.077 0-7.762-6.317-14.078-14.083-14.078zM9.235 25.644l6.069-10.2-6.069-9.882 17.398 10.04z"/>
+			</g>
+		</symbol>
+	</svg>
+
+	<!-- Header================= -->
+	<header class="header">
+
+		<div class="container">
+
+			<div class="header__nav">
+
+				<div class="header__logo">
+					<img src="img/header/logo.png" alt="">
+				</div>
+
+
+				<nav class="nav">
+
+					<ul>
+
+						<li><a href="#">About</a></li>
+						<li><a href="#">Portfolio</a></li>
+						<li><a href="#">Services</a></li>
+						<li><a href="#">Contact</a></li>
+
+					</ul>
+
+				</nav>
+
+			</div>
+
+			<div class="header__intro">
+
+				<h1><span>Clients</span> in your business</h1>
+
+				<p>Your clients on the internet. Learn how to receive them.</p>
+				
+				<a href="#" class="btn btn__animated">I want clients</a>
+
+				<div class="intro__mouse">
+					<img src="img/header/mouse.png" alt="">
+				</div>
+
+			</div>
+
+			<div class="intro__slider">
+				<svg class="slider">
+					<use xlink:href="#slider"></use>	
+				</svg>
+			</div>		
+		</div>
+
+	</header>
+
+	<!-- Advantage================ -->
+
+	<section class="advantage">
+
+		<div class="container">
+
+			<div class="advantage__inner">
+
+				<div class="advantage__text">
+
+					<h2 class="title advantage__text__title rotateInDownRight wow" data-wow-duration="2s" data-wow-delay="1.5s">What can <span>you receive?</span></h2>
+
+					<p class="subtitle advantage__text__subtitle rotateInUpLeft wow" data-wow-duration="2s" data-wow-delay="1.5s">Daisy is sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. </p>
+				</div>
+
+				<div class="advantage__posts zoomIn wow" data-wow-duration="3s" data-wow-delay="1s">
+
+					<div class="advantage__posts__item">
+
+						<div class="posts__item__logo">
+							<svg class="posts__item__icon">
+								<use xlink:href="#adv-1"></use>
+							</svg>
+
+							<svg class="posts__item__form">
+								<use xlink:href="#advform-1"></use>
+							</svg>
+						</div>
+
+						<h3>clients</h3>
+
+						<p>This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean</p>
+						
+					</div>
+
+					<div class="advantage__posts__item">
+						<div class="posts__item__logo">
+							<svg class="posts__item__icon">
+								<use xlink:href="#adv-1"></use>
+							</svg>
+
+							<svg class="posts__item__form">
+								<use xlink:href="#advform-2"></use>
+							</svg>
+						</div>
+
+						<h3>branding</h3>
+
+						<p>This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean</p>
+						
+					</div>
+
+					<div class="advantage__posts__item">
+
+						<div class="posts__item__logo">
+							<svg class="posts__item__icon">
+								<use xlink:href="#adv-1"></use>
+							</svg>
+
+							<svg class="posts__item__form">
+								<use xlink:href="#advform-3"></use>
+							</svg>
+						</div>
+
+						<h3>marketing</h3>
+
+						<p>This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean</p>
+											
+					</div>
+
+					<div class="advantage__posts__item">
+
+						<div class="posts__item__logo">
+							<svg class="posts__item__icon">
+								<use xlink:href="#adv-1"></use>
+							</svg>
+
+							<svg class="posts__item__form">
+								<use xlink:href="#advform-4"></use>
+							</svg>
+						</div>
+
+						<h3>adv.</h3>
+
+						<p>This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean</p>												
+					</div>
+
+				</div>
+
+					<div class="advantage__sliders1 shake wow" data-wow-duration="3s" data-wow-delay="1s">
+
+						<svg class="advantage__slider">
+							<use xlink:href="#slider-2"></use>
+						</svg>
+
+					</div>
+			</div>
+
+		</div>
+
+	</section>
+
+	<!-- Expand==================== -->
+
+	<div class="expand">
+
+		<div class="container">
+
+			<div class="expand__inner lightSpeedIn wow" data-wow-duration="2s" data-wow-delay="2s">
+
+				<h2><span>Expand</span> your business</h2>
+
+				<a href="#" class="btn expand__btn">Join Us</a>
+				
+			</div>
+
+				<div class="expand__slider shake wow" data-wow-duration="3s" data-wow-delay="1s">
+
+					<svg class="slider">
+						<use xlink:href="#slider"></use>
+					</svg>
+
+				</div>
+		</div>
+
+	</div>
+
+	<!-- Process=============== -->
+
+	<section class="process">
+
+		<div class="container">
+
+			<div class="process__inner">
+
+				<div class="process__text">
+
+					<h3 class="process__title title zoomInUp wow"
+					data-wow-duration="2s" data-wow-delay="1s">our <span>process</span></h3>
+
+					<p class="process__subtitle subtitle zoomInDown wow" data-wow-duration="2s" data-wow-delay="1s">Daisy is sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum</p>
+					
+				</div>
+
+				<div class="process__steps">
+					
+					<div class="step-1 flip wow" data-wow-duration="3s" data-wow-delay="1s">
+
+						<svg class="ellipseRed step-1--ellipseRed">
+							<use xlink:href="#ellipsered"></use>
+						</svg>
+
+						<svg class="process__form step-1--process">
+							<use xlink:href="#idea"></use>
+						</svg>
+
+
+						<h3>step <span>1</span></h3>
+
+						<p>This is Photoshop's version  of Lorem Ipsum. Proin gravida</p>
+						
+					</div>
+
+					<div class="step-2 flip wow" data-wow-duration="3s" data-wow-delay="2s">
+
+						<svg class="ellipseRed step-2--ellipseRed">
+							<use xlink:href="#ellipsered"></use>
+						</svg>
+
+						<svg class="process__form step-2--process">
+							<use xlink:href="#comp"></use>
+						</svg>
+
+						<h3>step <span>2</span></h3>
+
+						<p>This is Photoshop's version  of Lorem Ipsum. Proin gravida</p>
+						
+					</div>
+
+					<div class="step-3 flip wow" data-wow-duration="3s" data-wow-delay="2.5s">
+
+						<svg class="ellipseRed step-3--ellipseRed">
+							<use xlink:href="#ellipsered"></use>
+						</svg>
+
+						<svg class="process__form step-3--process">
+							<use xlink:href="#man"></use>
+						</svg>
+
+						<h3>step <span>3</span></h3>
+
+						<p>This is Photoshop's version  of Lorem Ipsum. Proin gravida</p>
+						
+					</div>
+
+					<div class="step-4 flip wow" data-wow-duration="3s" data-wow-delay="3s">
+
+						<svg class="ellipseRed step-4--ellipseRed">
+							<use xlink:href="#ellipsered"></use>
+						</svg>
+
+						<svg class="process__form step-4--process">
+							<use xlink:href="#hand"></use>
+						</svg>
+
+						<svg class="ellipseWhite">
+							<use xlink:href="#ellipsewhite"></use>
+						</svg>
+
+						<svg class="rocket">
+							<use xlink:href="#rocket"></use>
+						</svg>
+
+						<h3>step <span>4</span></h3>
+
+						<p>This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet.</p>
+						
+					</div>
+
+					<div class="step-5 flip wow" data-wow-duration="3s" data-wow-delay="1.5s">
+
+						<img src="img/process/photo.png" class="process__photo" alt="">
+
+					</div>
+
+				</div>
+				
+			</div>
+
+			<div class="process__slider">
+
+				<svg class="slider-2 shake wow" data-wow-duration="3s" data-wow-delay="1s">
+					<use xlink:href="#slider-2"></use>
+				</svg>
+
+			</div>
+
+		</div>
+
+	</section>
+
+	<!-- OUR WORK ========== -->
+	
+	<section class="work">
+
+		<div class="container">
+
+			<h3 class="title work__title heartBeat wow" data-wow-duration="3s">what do <span>we do?</span></h3>
+
+			<div class="work__inner">
+
+				<article class="work__text">
+
+					<h3 class="title work__text__title fadeInLeft wow" data-wow-duration="2s" data-wow-delay="1s">Landing Pages</h3>
+
+					<p class="work__text__subtitle fadeInLeft wow" data-wow-duration="2s" data-wow-delay="1s">This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam</p>
+
+					<a href="#" class="btn work__btn zoomIn wow" data-wow-duration="3s" data-wow-delay="1s">More details</a>
+
+				</article>
+
+				<div class="work__photo">
+
+						<div class="work__photo-1 fadeInUp wow" data-wow-duration="2.5s" data-wow-delay="1s">
+							<img src="img/OUR WORK/macbook.png" alt="">
+						</div>
+
+						<div class="work__photo-2 fadeInDown wow" data-wow-duration="2.5s" data-wow-delay="1s">
+							<img src="img/OUR WORK/computer.png" alt="">
+						</div>
+
+						<div class="work__photo-3 fadeInUp wow" data-wow-duration="2.5s" data-wow-delay="1s">
+							<img src="img/OUR WORK/ipad.png" alt="">
+						</div>
+
+				</div>
+
+			</div>
+
+			<div class="work__slider">
+
+				<svg class="slider-2 shake wow" data-wow-duration="3s" data-wow-delay="1s">
+					<use xlink:href="#slider-2"></use>
+				</svg>
+
+			</div>
+
+		</div>
+
+	</section>
+
+	<!--WORK-2================  -->
+	
+	<section class="work work-2">
+
+		<div class="container">
+
+			<div class="work__inner">
+
+				<div class="work__photo__macbook fadeInLeft wow" data-wow-duration="2s" data-wow-delay="1s">
+					<img src="img/OUR WORK/macbookBig.png" alt="">
+				</div>
+
+				<article class="work__text work-2__text">
+
+					<h3 class="title work__text__title work-2__text__title fadeInRight wow" data-wow-duration="2s" data-wow-delay="1s">advertising</h3>
+
+					<p class="work__text__subtitle fadeInRight wow" data-wow-duration="2s" data-wow-delay="1s">This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam</p>
+
+					<a href="#" class="btn work__btn zoomIn wow" data-wow-duration="3s" data-wow-delay="1s">More details</a>
+					
+				</article>
+
+			</div>
+
+			<div class="work__slider">
+
+				<svg class="slider-2 shake wow" data-wow-duration="3s" data-wow-delay="1s">
+					<use xlink:href="#slider-2"></use>
+				</svg>
+
+			</div>
+
+		</div>
+
+	</section>
+
+	<!-- WORK-3=============== -->
+
+	<section class="work work-3">
+		<div class="container">
+			<div class="work__inner">
+				<article class="work__text work-3__text">
+
+					<h3 class="title work__text__title work-3__text__title fadeInLeft wow" data-wow-duration="2s" data-wow-delay="1s">marketing kit</h3>
+
+					<p class="work__text__subtitle fadeInLeft wow" data-wow-duration="2s" data-wow-delay="1s">This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam</p>
+
+					<a href="#" class="btn work__btn zoomIn wow" data-wow-duration="3s" data-wow-delay="1.5s">More details</a>
+					
+				</article>
+
+				<div class="work__photo__book fadeInRight wow" data-wow-duration="2s" data-wow-delay="1s">
+					<img src="img/OUR WORK/book.png" alt="">
+				</div>
+
+
+			</div>
+
+			<div class="work__slider">
+
+				<svg class="slider-2 shake wow" data-wow-duration="3s" data-wow-delay="1s">
+					<use xlink:href="#slider-2"></use>
+				</svg>
+
+			</div>
+
+		</div>
+	</section>
+
+	<!-- Portfolio===================== -->
+	<section class="portfolio">
+
+		<div class="container">
+
+			<div class="portfolio__inner">
+
+				<h3 class="portfolio__title title wobble wow" data-wow-duration="2s" data-wow-delay="1">portfolio</h3>
+
+				<nav class="portfolio__nav lightSpeedIn wow" data-wow-duration="2s" data-wow-delay="1s">
+
+					<a href="#" class="portfolio__link">all</a>
+					<a href="#" class="portfolio__link">entertainment</a>
+					<a href="#" class="portfolio__link">sport</a>
+					<a href="#" class="portfolio__link">business</a>
+					<a href="#" class="portfolio__link">building</a>
+
+				</nav>
+
+				<div class="portfolio__works">
+
+					<div class="portfolio__works__left">
+
+						<div class="portfolio__bike zoomIn wow" data-wow-duration="2s">
+							<img src="img/portfolio/bike.png" alt="">
+
+							<div class="portfolio__bike--hover">
+								<p>mountain bikes</p>
+
+								<img src="img/portfolio/plus.png" class="portfolio__bike__icon" alt="">
+								
+							</div>
+
+						</div>
+
+						<div class="portfolio__present zoomIn wow" data-wow-duration="2s" data-wow-delay="1s">
+
+							<img src="img/portfolio/present.png" alt="">
+
+							<div class="portfolio__present--hover">
+								<p>present</p>
+
+								<img src="img/portfolio/plus.png" class="portfolio__present__icon" alt="">
+								
+							</div>
+
+						</div>
+
+						<div class="portfolio__letter zoomIn wow" data-wow-duration="2s" data-wow-delay="1s">
+
+							<img src="img/portfolio/letter.png" alt="">
+
+							<div class="portfolio__letter--hover">
+								<p>letter</p>
+
+								<img src="img/portfolio/plus.png" class="portfolio__letter__icon" alt="">
+								
+							</div>
+
+						</div>
+						
+					</div>
+
+					<div class="portfolio__works__right">
+
+						<div class="portfolio__color zoomIn wow" data-wow-duration="2s" data-wow-delay="1s">
+
+							<img src="img/portfolio/color.png" alt="">
+
+							<div class="portfolio__color--hover">
+								<p>colors</p>
+
+								<img src="img/portfolio/plus.png" class="portfolio__color__icon" alt="">
+								
+							</div>
+
+						</div>
+
+						<div class="portfolio__bus zoomIn wow" data-wow-duration="2s" data-wow-delay="1s">
+
+							<img src="img/portfolio/bus.png" alt="">
+
+							<div class="portfolio__bus--hover">
+								<p>new bus</p>
+
+								<img src="img/portfolio/plus.png" class="portfolio__bus__icon" alt="">
+								
+							</div>
+
+						</div>
+
+						<div class="portfolio__cars zoomIn wow" data-wow-duration="2s" data-wow-delay="1s">
+							<img src="img/portfolio/cars.png" alt="">
+
+							<div class="portfolio__cars--hover">
+								<p>rare machines</p>
+
+								<img src="img/portfolio/plus.png" class="portfolio__cars__icon" alt="">
+								
+							</div>
+
+						</div>
+						
+					</div>
+
+				</div>
+
+				<a href="" class="btn portfolio__btn zoomInUp wow" data-wow-duration="2s" data-wow-delay="1s">i want landing page</a>
+				
+				<div class="portfolio__slider">
+
+					<svg class="slider-2 shake wow" data-wow-duration="3s" data-wow-delay="1s">
+						<use xlink:href="#slider-2"></use>
+					</svg>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</section>
+
+	<!-- Team================= -->
+
+	<section class="team">
+
+		<div class="container">
+
+			<div class="team__inner">
+
+				<h3 class="title team__title zoomIn wow" data-wow-duration="2s" data-wow-delay="1s">our <span>team</span></h3>
+
+				<div class="ourTeam">
+
+					<div class="our__team__people fadeInLeftBig wow" data-wow-duration="2s" data-wow-delay="1s">
+
+						<div class="team__logo">
+							<img src="img/team/1.png" alt="">
+						</div>
+
+						<h4><span>Tomothy</span> Bowman</h4>
+
+						<h5>Marketing</h5>
+
+						<svg class="social__twitter">
+							<use xlink:href="#twitter"></use>
+						</svg>
+
+						<svg class="social__facebook">
+							<use xlink:href="#facebook"></use>
+						</svg>
+
+						<svg class="social__in">
+							<use xlink:href="#in"></use>
+						</svg>
+						
+					</div>
+
+					<div class="our__team__people">
+
+						<div class="team__logo">
+							<img src="img/team/2.png" alt="">
+						</div>
+
+						<h4><span>Steve</span> Tracy</h4>
+
+						<h5>CEO</h5>
+
+						<svg class="social__twitter">
+							<use xlink:href="#twitter"></use>
+						</svg>
+
+						<svg class="social__facebook">
+							<use xlink:href="#facebook"></use>
+						</svg>
+
+						<svg class="social__in">
+							<use xlink:href="#in"></use>
+						</svg>
+						
+					</div>
+
+					<div class="our__team__people fadeInRightBig wow" data-wow-duration="2s" data-wow-delay="1s">
+
+						<div class="team__logo">
+							<img src="img/team/3.png" alt="">
+						</div>
+
+						<h4><span>Hellen</span> Johns</h4>
+
+						<h5>Clients</h5>
+
+						<svg class="social__twitter">
+							<use xlink:href="#twitter"></use>
+						</svg>
+
+						<svg class="social__facebook">
+							<use xlink:href="#facebook"></use>
+						</svg>
+
+						<svg class="social__in">
+							<use xlink:href="#in"></use>
+						</svg>
+						
+					</div>
+					
+				</div>
+
+				<div class="portfolio__slider">
+
+					<svg class="slider-2 shake wow" data-wow-duration="3s" data-wow-delay="1s">
+						<use xlink:href="#slider-2"></use>
+					</svg>
+
+				</div>
+				
+			</div>
+
+		</div>
+
+	</section>
+
+	<!-- Team Leader============= -->
+	
+	<article class="leader">
+
+		<div class="container">
+
+			<div class="leader__quots flip wow" data-wow-duration="2s" data-wow-delay="1s">
+
+				<svg class="leader__hexagon">
+					<use xlink:href="#adv-1"></use>
+				</svg>
+
+				<svg class="quots">
+					<use xlink:href="#quots"></use>
+				</svg>
+
+			</div>
+
+			<div class="leader__inner">
+				
+				<div class="leader__text fadeInLeft wow" data-wow-duration="2s" data-wow-delay="1s">
+
+					This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit conse
+
+				</div>
+
+				<div class="leader__photo">
+					<img src="img/team/teaml.png" alt="">
+				</div>
+
+				<div class="leader__name fadeInRight wow" data-wow-duration="2s" data-wow-delay="1s">
+
+					<h4><span>Alan</span> Richman</h4>
+					<h5>CEO of Romashka</h5>
+
+				</div>
+
+			</div>
+
+			<div class="leader__slider">
+
+                <svg class="leader__arrow--left">
+                	<use xlink:href="#arrow-left"></use>
+                </svg>
+
+                <svg class="leader__arrow--right">
+                	<use xlink:href="#arrow-right"></use>
+                </svg>
+				
+			</div>
+
+		</div>
+
+	</article>
+
+	<!-- Map============ -->
+
+	<div class="map">
+
+		<div class="map__address">
+
+			<svg class="map__hexagon">
+				<use xlink:href="#adv-1"></use>
+			</svg>
+
+			<div class="adress">
+
+				<h5>Daisy</h5>
+				<span>615 4th Ave S, Jacksonville Beach, FL 32250</span>
+
+			</div>
+
+		</div>
+		
+	</div>
+
+	<!-- Footer=========== -->
+
+	<footer class="footer">
+
+		<div class="container">
+
+			<div class="footer__logo">
+				<img src="img/logo-footer.png" alt="">
+			</div>
+
+		</div>
+
+	</footer>
+	
+</body>
+</html>
